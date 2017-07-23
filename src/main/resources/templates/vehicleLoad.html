@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Train Load : View all</title>
+    <style>
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+
+tr:nth-child(even) {
+    background-color: #dddddd;
+}
+
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>Vehicles : View all compartment loads</h1>
+    <div class="container">
+        <table class="table table-bordered table-striped">
+            <thead>
+            <tr>
+                <td>Vehicle Id</td>
+                <td>Compartment ID</td>
+                <td>Load Level</td>
+                <td>Total In</td>
+                <td>Capacity</td>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:if="${compartments.empty}">
+                <td colspan="5">No Vehicle Information Available</td>
+            </tr>
+            <tr th:each="compartment : ${compartments}">
+                <td th:text="${compartment.vehicleId}"></td>
+                <td th:text="${compartment.compartmentId}"></td>
+                <td th:text="${compartment.loadLevel}"></td>
+                <td th:text="${compartment.in}"></td>
+                <td th:text="${compartment.capacity}"></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+</body>
+</html>
