@@ -3,23 +3,45 @@
 <head>
     <title>Train Load : View all</title>
     <style>
-table {
-    font-family: arial, sans-serif;
-    border-collapse: collapse;
-    width: 100%;
-}
+        table {
+            font-family: arial, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+        }
 
-td, th {
-    border: 1px solid #dddddd;
-    text-align: left;
-    padding: 8px;
-}
+        td {
+            border: 3px solid #dddddd;
+            text-align: center;
+            padding: 8px;
+        }
 
-tr:nth-child(even) {
-    background-color: #dddddd;
-}
+        th {
+            border: 3px solid #dddddd;
+            text-align: center;
+            padding: 8px;
+            color: white;
+            background-color: black
+        }
 
+        .green {
+            background-color: green;
+        }
+
+        .red {
+            background-color: indianred;
+        }
+
+        .blue {
+            background-color: cadetblue;
+        }
     </style>
+
+    <script type="text/javascript">
+        setTimeout(function(){
+            location = ''
+        },1000)
+    </script>
+
 </head>
 <body>
 <div class="container">
@@ -28,23 +50,40 @@ tr:nth-child(even) {
         <table class="table table-bordered table-striped">
             <thead>
             <tr>
-                <td>Vehicle Id</td>
-                <td>Compartment ID</td>
-                <td>Load Level</td>
-                <td>Total In</td>
-                <td>Capacity</td>
+                <th>Vehicle Id</th>
+                <th>Compartment ID</th>
+                <th>Load Level</th>
+                <th>Total In</th>
+                <th>Total Out</th>
+                <th>Capacity</th>
             </tr>
             </thead>
             <tbody>
             <tr th:if="${compartments.empty}">
-                <td colspan="5">No Vehicle Information Available</td>
+                <td colspan="6">No Vehicle Information Available</td>
             </tr>
             <tr th:each="compartment : ${compartments}">
-                <td th:text="${compartment.vehicleId}"></td>
-                <td th:text="${compartment.compartmentId}"></td>
-                <td th:text="${compartment.loadLevel}"></td>
-                <td th:text="${compartment.in}"></td>
-                <td th:text="${compartment.capacity}"></td>
+                <td th:if="${compartment.loadLevel=='HIGH'}" class="red" th:text="${compartment.vehicleId}"></td>
+                <td th:if="${compartment.loadLevel=='HIGH'}" class="red" th:text="${compartment.compartmentId}"></td>
+                <td th:if="${compartment.loadLevel=='HIGH'}" class="red" th:text="${compartment.loadLevel}"></td>
+                <td th:if="${compartment.loadLevel=='HIGH'}" class="red" th:text="${compartment.in}"></td>
+                <td th:if="${compartment.loadLevel=='HIGH'}" class="red" th:text="${compartment.out}"></td>
+                <td th:if="${compartment.loadLevel=='HIGH'}" class="red" th:text="${compartment.capacity}"></td>
+
+                <td th:if="${compartment.loadLevel=='MEDIUM'}" class="blue" th:text="${compartment.vehicleId}"></td>
+                <td th:if="${compartment.loadLevel=='MEDIUM'}" class="blue" th:text="${compartment.compartmentId}"></td>
+                <td th:if="${compartment.loadLevel=='MEDIUM'}" class="blue" th:text="${compartment.loadLevel}"></td>
+                <td th:if="${compartment.loadLevel=='MEDIUM'}" class="blue" th:text="${compartment.in}"></td>
+                <td th:if="${compartment.loadLevel=='MEDIUM'}" class="blue" th:text="${compartment.out}"></td>
+                <td th:if="${compartment.loadLevel=='MEDIUM'}" class="blue" th:text="${compartment.capacity}"></td>
+
+                <td th:if="${compartment.loadLevel=='LOW'}" class="green" th:text="${compartment.vehicleId}"></td>
+                <td th:if="${compartment.loadLevel=='LOW'}" class="green" th:text="${compartment.compartmentId}"></td>
+                <td th:if="${compartment.loadLevel=='LOW'}" class="green" th:text="${compartment.loadLevel}"></td>
+                <td th:if="${compartment.loadLevel=='LOW'}" class="green" th:text="${compartment.in}"></td>
+                <td th:if="${compartment.loadLevel=='LOW'}" class="green" th:text="${compartment.out}"></td>
+                <td th:if="${compartment.loadLevel=='LOW'}" class="green" th:text="${compartment.capacity}"></td>
+
             </tr>
             </tbody>
         </table>
